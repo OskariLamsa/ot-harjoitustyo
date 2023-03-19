@@ -1,0 +1,105 @@
+commit 44a16090ec9330d5aa8d117cd3acc2568c9de414
+Author: Oskari <oskari.lamsa@helsinki.fi>
+Date:   Sun Mar 19 15:23:41 2023 +0200
+
+    file22 ja file3
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit a8612b3159e34d1169c3aa0b7e7dbf28c655cf75
+Author: Oskari <oskari.lamsa@helsinki.fi>
+Date:   Sun Mar 19 15:19:59 2023 +0200
+
+    file 1,2,3
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 623d791cc43117329cdf4b07fb97eae029e9ea27
+Author: Oskari <oskari.lamsa@helsinki.fi>
+Date:   Sun Mar 19 13:20:38 2023 +0200
+
+    muutoksia -p vivun avulla
+
+ eka.txt    | 2 +-
+ kolmas.txt | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit d28111a1ee36f418e888aa79c59bd5a0b4770555
+Author: Oskari <oskari.lamsa@helsinki.fi>
+Date:   Sun Mar 19 13:16:06 2023 +0200
+
+    tiedosto.txt on nyt eka.txt
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 4e1e9e559143d01f947793309026dccc1909d41a
+Author: Oskari <oskari.lamsa@helsinki.fi>
+Date:   Sun Mar 19 13:07:21 2023 +0200
+
+    toinen.txt poistettu
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit bca04ca395c89b96b36a9d31207f88f920316420
+Author: Oskari <oskari.lamsa@helsinki.fi>
+Date:   Sun Mar 19 13:03:26 2023 +0200
+
+    tiedosto.txt on muutetu jälleen.
+
+ tiedosto.txt | 11 +----------
+ 1 file changed, 1 insertion(+), 10 deletions(-)
+
+commit 1de69555c7bd272c8eb829238864d0564142c1e1
+Author: Oskari <oskari.lamsa@helsinki.fi>
+Date:   Sun Mar 19 13:00:51 2023 +0200
+
+    tiedosto.txtssä on nyt enemmän tekstiä
+
+ tiedosto.txt | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
+commit 4992939e6213923de8b4dafb6403611246f412f1
+Author: Oskari <oskari.lamsa@helsinki.fi>
+Date:   Sun Mar 19 12:54:48 2023 +0200
+
+    Stuff ja muut ylos
+
+ kolmas.txt         | 1 +
+ stuff/salainen.txt | 1 +
+ toinen.txt         | 1 +
+ 3 files changed, 3 insertions(+)
+
+commit a382f59e21e205b510cb7d896655f47da0cd8a0a
+Author: Oskari <oskari.lamsa@helsinki.fi>
+Date:   Sun Mar 19 12:50:54 2023 +0200
+
+    Kolmas lisätty
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 35ddbb8d799c90b8f21f4ac0261b2994db62ca2b
+Author: Oskari <oskari.lamsa@helsinki.fi>
+Date:   Sun Mar 19 12:43:03 2023 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 535c629ac80b4749c28950801ede9d8d15b24c00
+Author: Oskari <oskari.lamsa@helsinki.fi>
+Date:   Sun Mar 19 12:32:03 2023 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
