@@ -5,3 +5,4 @@ Ei kai ny sentään
 ## Kiltti?
 **Tietysti!**
 [komentorivi.txt](laskarit/viikko1/komentorivi.txt)
+Joulupukki tykkää kekseistä ja maidosta.
