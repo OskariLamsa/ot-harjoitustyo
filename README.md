@@ -1,5 +1,5 @@
-#Tontut kurkkii.
-##Tuhma?
+# Tontut kurkkii.
+## Tuhma?
 Ei kai ny sentään
-##Kiltti?
+## Kiltti?
 **Tietysti!**
