@@ -1,9 +1,3 @@
-# Tontut kurkkii.
-## Tuhma?
-Ei kai ny sentään
-[gitlog.txt](/laskarit/viikko1/gitlog.txt)
-## Kiltti?
-**Tietysti!**
-[komentorivi.txt](laskarit/viikko1/komentorivi.txt)
-Joulupukki tykkää kekseistä ja maidosta.
-Jouluna saa syoda pipareita ja juoda glogia.
+[gitlog.txt](/laskarit/viikko1/gitlog.txt)  
+[komentorivi.txt](laskarit/viikko1/komentorivi.txt)  
+[vaatimusmäärittely.md](laskarit/viikko2/dokumentation/vaatimusmäärittely.md)
