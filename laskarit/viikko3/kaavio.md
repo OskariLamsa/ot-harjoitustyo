@@ -42,3 +42,8 @@ Pelaajat --> Pelinappula
 Pelaajat --> Ruutu
 Pelilauta --> Ruutu
 Ruutu --> Ruutu
+Ruutu --> Aloitusruutu
+Ruutu --> Vankila
+Ruutu --> Sattuma ja yhteismaa
+Ruutu --> Asemat ja laitokset
+Ruutu --> Normaalit kadut
