@@ -1,4 +1,5 @@
 ```mermaid
+title: Monopoly1
 classDiagram
 class Pelaajat{
  +string nappula
@@ -14,3 +15,4 @@ class Pelilauta{
   +string nimi
   +string sijainti
  }
+Pelaajat --> Pelinappula
