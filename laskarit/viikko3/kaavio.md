@@ -15,3 +15,5 @@ class Pelilauta{
   +string sijainti
  }
 Pelaajat --> Pelinappula
+Pelaajat --> Ruutu
+Pelilauta --> Ruutu
