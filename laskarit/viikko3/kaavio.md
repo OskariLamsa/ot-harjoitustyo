@@ -13,3 +13,4 @@ class Pelilauta{
  class Pelinappula{
   +string nimi
   +string sijainti
+ }
