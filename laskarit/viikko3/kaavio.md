@@ -1,5 +1,4 @@
 ```mermaid
-title: Monopoly1
 classDiagram
 class Pelaajat{
  +string nappula
