@@ -17,3 +17,4 @@ class Pelilauta{
 Pelaajat --> Pelinappula
 Pelaajat --> Ruutu
 Pelilauta --> Ruutu
+Ruutu --> Ruutu
