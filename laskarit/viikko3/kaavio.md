@@ -47,3 +47,4 @@ Ruutu --> Vankila
 Ruutu --> Sattuma ja yhteismaa
 Ruutu --> Asemat ja laitokset
 Ruutu --> Normaalit kadut
+Pelinappula --> Ruutu
