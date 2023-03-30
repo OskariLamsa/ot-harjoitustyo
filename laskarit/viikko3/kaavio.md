@@ -4,6 +4,12 @@ class Pelaajat{
  +string nappula
  +string ruutu
  }
-      class Pelilauta
-      class Ruutu
-      class Pelinappula
+class Pelilauta{
+ +list ruudut
+ }
+ class Ruutu{
+ +ruutu seuraavaruutu
+ }
+ class Pelinappula{
+  +string nimi
+  +string sijainti
