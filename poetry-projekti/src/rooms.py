@@ -1,23 +1,22 @@
-"""Tämä tiedosto sisältää 'huoneet' joita pelissä käytetään"""
+"""Tämä luokka 'huoneet' joita pelissä käytetään."""
 print("hoi")
 class Rooms:
     """Luokka huoneille"""
-    def __init__(self, x, y, name, description, item):
-        self.x = x
-        self.y = y
+    def __init__(self, pysty, vaaka, name, description, item):
+        self.pysty = int(pysty)
+        self.vaaka = int(vaaka)
         self.name = name
         self.description = description
         self.item = item
-    def RoomDecoder():
-        f = open("rooms.csv", "r")
+    def room_decoder(self, tiedosto):
+        "Annetun tiedoston avulla palauttaa listan, joka sisältää room-olioita."
         roomlist = []
-        for i in f:
+        for i in tiedosto:
             i = i.replace("\n", "")
-            e = i.split(";")
-            room = Rooms(e[0], e[1], e[2], e[3], e[4])
+            split_i = i.split(";")
+            room = Rooms(split_i[0], split_i[1], split_i[2], split_i[3], split_i[4])
             roomlist.append(room)
         return roomlist
     def __str__(self):
-        return(f"{self.x},{self.y},{self.name},{self.description},{self.item}")
-
-
+        """Palauta kuvaus room-oliosta."""
+        return f"{self.pysty},{self.vaaka},{self.name},{self.description},{self.item}"
