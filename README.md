@@ -5,4 +5,4 @@ Klassinen tekstiseikkailu peli, jossa pelaaja voi pelata kirjoittamalla komentoj
 - [Vaatimusmäärittely](./poetry-projekti/dokumentaatio/vaatimusmäärittely.md)
 - [Kirjanpito](./poetry-projekti/dokumentaatio/tuntikirjaus)
 - [Arkkitehtuuri](./poetry-projekti/dokumentaatio/arkkitehtuuri.md)
-- [Changelog](.poetry-projekti/dokumentaatio/changelog.md)
+- [Changelog](./poetry-projekti/dokumentaatio/changelog.md)
