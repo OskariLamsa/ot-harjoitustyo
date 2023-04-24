@@ -1,4 +1,2 @@
-´´´mermaid
-
-##Tekstiseikkailu
+#Tekstiseikkailu
 teksti
