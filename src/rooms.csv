@@ -1,0 +1,6 @@
+0;0;Hospital;You are in a hospital. The walls are lined with empty beds and there are broken vials, bottles and needles scattered about;0
+1;0;Hallway;You are in a hallway. The stone bricks are withered and collecting moss.;0
+2;0;Crossroads;You are at a T-shaped crossroad. It is too dark to see where each path leads;0
+2;-1;End of the hall;You are at the end of the hallway.;0
+2;1;Lidl;You are at the front door of a local Lidl grocery store;0
+2;-2;Bathroom;You are at a standard bathroom. Why does a bathroom have a lock anyway?;1
