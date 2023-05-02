@@ -2,7 +2,30 @@
 Klassinen tekstiseikkailu peli, jossa pelaaja voi pelata kirjoittamalla komentoja syotekenttään. Pygame mahdolllistaa grafiikan piirtämiseen, joten sen avulla esitetään erinlaisia elementtejä kuten pelaajan elämäpisteet ja rahat.
 
 ## Dokumentaatio
-- [Vaatimusmäärittely](./poetry-projekti/dokumentaatio/vaatimusmäärittely.md)
-- [Kirjanpito](./poetry-projekti/dokumentaatio/tuntikirjaus)
-- [Arkkitehtuuri](./poetry-projekti/dokumentaatio/arkkitehtuuri.md)
-- [Changelog](./poetry-projekti/dokumentaatio/changelog.md)
+- [Vaatimusmäärittely](./dokumentaatio/vaatimusmäärittely.md)
+- [Kirjanpito](./dokumentaatio/tuntikirjaus)
+- [Arkkitehtuuri](./dokumentaatio/arkkitehtuuri.md)
+- [Changelog](./dokumentaatio/changelog.md)
+- [Peliohje](./dokumentaatio/peliohje.md)
+
+## Asennus
+Voit asentaa riippuvuudet ja ajaa pelin seuraavilla komennoilla:
+```bash
+poetry install
+```
+```bash
+poetry run invoke start
+```
+Jos haluat resetoida pelin tallenustiedoston, kirjoita:
+```bash
+poetry run invoke reset
+```
+## Testit
+Voit ajaa pylint testit komennolla:
+```bash
+poetry run invoke pylint
+```
+Coverage-raportin saa komennolla:
+```bash
+poetry run coverage-report
+```
