@@ -20,3 +20,16 @@ def coverage_report(ctx):
     ctx.run("coverage run --branch -m pytest", pty=True)
     ctx.run("coverage report -m", pty=True)
     ctx.run("coverage html", pty=True)
+
+@task
+def reset(ctx):
+    """resetoi peli"""
+    try:
+        ctx.run("rm src/save.csv")
+    except:
+        print("no file to remove!")
+
+@task
+def pylint(ctx):
+    """aja pylint"""
+    ctx.run("pylint src")

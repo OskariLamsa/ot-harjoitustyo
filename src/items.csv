@@ -1,2 +1,3 @@
-potion;This magical drink will restore your health points when consumed;heal 2;1,0
-key;This is an unassuming key. You have an instinctive feeling that it will disappear when used.;key;0,0.1,1
+"Nimi, description, efekti"
+potion;This magical drink will restore your health points when consumed;heal 4
+key;This is an unassuming key. You have an instinctive feeling that it will disappear when used.;key
