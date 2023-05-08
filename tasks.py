@@ -26,6 +26,7 @@ def reset(ctx):
     """resetoi peli"""
     try:
         ctx.run("rm src/save.csv")
+        ctx.run("rm src/room_save.csv")
     except:
         print("no file to remove!")
 
@@ -33,3 +34,13 @@ def reset(ctx):
 def pylint(ctx):
     """aja pylint"""
     ctx.run("pylint src")
+
+@task
+def resetstart(ctx):
+    """Resetoi ja aja peli"""
+    try:
+        ctx.run("rm src/save.csv")
+        ctx.run("rm src/room_save.csv")
+    except:
+        pass
+    ctx.run("python3 src/game.py", pty=True)

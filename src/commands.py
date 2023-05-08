@@ -2,12 +2,13 @@
 #pylint: disable=no-member
 #Yllä oleva ajaa saman asian kuin whitelistaaminen, joka ei toiminut.
 from random import randint
+from items import Items
 class Commands:
     """Commands."""
     def __init__(self, game):
         self.game = game
         self.position = game.position
-        self.in_combat = game.in_combat
+        self.in_combat = None
     def command_handler(self ,command):
         """Tämä funktio ottaa vastaan syotteen, paloittelee sen ja vie sen oikealle komennolle."""
         command2 = command.split(" ")
@@ -34,30 +35,58 @@ class Commands:
             return Commands.move(self, second)
         if first == "use":
             return Commands.item_check(self, second)
+        if first == "buy":
+            if Commands.get_room(self, self.position[0], self.position[1]).name == "Merchant":
+                return Commands.buy_item(self, second)
+            return "You have to find a merchant first!"
 
         return "Check your commands, sir."
+    def buy_item(self, item_name):
+        """Lisää pelaajan invenoryyn esine ja miinusta rahaa Onnistuu vain Merchant-huoneessa.
+        """
+        if item_name == "potion":
+            if self.money >= 50:
+                self.player_items.append(Items("potion",
+                "This magical drink will restore your health points when consumed", "heal 4"))
+                self.money -= 50
+                return "'Pleasure doing business!, traveler!'"
+            return "'Come back when you have 50 money.'"
+        if item_name == "key":
+            if self.money >= 100:
+                self.player_items.append(Items("key","This is an unassuming key."+
+                " You have an instinctive feeling that it will disappear when used.", "key"))
+                self.money -=100
+                return "'Pleasure doing business, traveler!'"
+        return "'Apologies. I don't sell such an item.'"
     def get_item_by_location(self, horizontal, vertical):
         """Palauta item-olio huoneen kordinaatien perusteella. Poista item huoneesta."""
         for i in self.rooms:
-            if i.horizontal == horizontal and i.vertical == vertical and i.item != "none":
+            if i.horizontal == horizontal and i.vertical == vertical and i.item.name != "none":
                 to_return = i.item
-                i.item = str("none")
+                i.item = self.items[0]
                 return to_return
-        return None
-    def get_item_by_name(self, item_name):
-        """Palauta item-olio nimen perusteella."""
-        for i in self.items:
-            if i.name == item_name:
-                return i
+#        return None
+#    def get_item_by_name(self, item_name):
+#        """Palauta item-olio nimen perusteella."""
+#        for i in self.items:
+#            if i.name == item_name:
+#                return i
         return None
     def use_item(self, item):
         """Jokaiselle itemille on oma funktio."""
         split_effect = item.effect.split(" ")
         if item.name == "key":
+            Commands.remove_item(self, item.name)
             return Commands.use_key(self)
         if split_effect[0] == "heal":
+            Commands.remove_item(self, item.name)
             return Commands.use_heal_item(self, int(split_effect[1]))
         return "This item can't be used."
+    def remove_item(self, item_name):
+        for i in self.player_items:
+            if i.name == item_name:
+                self.player_items.remove(i)
+                break
     def use_key(self):
         """Etsi lukittuja ovia lähettyviltä, ja avaa ensimmäinen, joka loytyy."""
         for i in self.rooms:
@@ -73,6 +102,9 @@ class Commands:
             if self.position[0]==i.horizontal and self.position[1]+1==i.vertical and i.locked==1:
                 i.locked = 0
                 return f"You used the key to unlock the {i.name}"
+        for i in self.items:
+            if i.name == "key":
+                self.player_items.append(i)
         return "Nothing to unlock here."
     def use_heal_item(self, heal):
         """Tämä funktio parantaa pelaajaa tietyn määrän
@@ -125,16 +157,18 @@ class Commands:
         room = Commands.get_room(self, check_vertical, check_horizontal)
         if room is not None:
             if room.locked == 1:
-                to_return = "That room is locked!"
+                return "That room is locked!"
             if self.in_combat == 1:
                 if randint(0,1) == 1:
                     return "But you couldn't get away!" + "\n" + Commands.enemy_attack(self,
                      self.enemy.name)
                 self.in_combat = 0
+                self.position = (check_vertical, check_horizontal)
                 return ("You managed to flee!" + "\n" +
                         room.description +"\n" + f"{self.find_adjacent_rooms()}")
             combat_calculation = randint(0, 100)
             if combat_calculation <= self.combat_chance:
+                self.position = (check_vertical, check_horizontal)
                 return room.description + "\n" + Commands.combat_start(self)
             self.combat_chance += 10
             print(f"chance is now {self.combat_chance}")
@@ -183,7 +217,11 @@ class Commands:
             self.enemy.health -= 3
             if self.enemy.health <= 0:
                 self.in_combat = 0
-                return f"You hit and defeat the {self.enemy.name}"
+                reward = randint(20,50)
+                self.money += reward
+                name = self.enemy.name
+                self.enemy = None
+                return f"You hit and defeat the {name} and find {reward} money!"
             return (f"You hit the {self.enemy.name}" + "\n" +
             Commands.enemy_attack(self, self.enemy.name))
         return "You miss." + "\n" + Commands.enemy_attack(self, self.enemy.name)

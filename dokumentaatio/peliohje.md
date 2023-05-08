@@ -26,5 +26,9 @@ use key,potion
 ```
 Käytä esinettä, joka pelaajalta loytyy.
 
+```bash
+buy key, potion
+```
+Osta esineitä. Toimii ainoastaan Merchant-huoneessa.
 ## Pelin kuvaus
 Etsi huoneista esineitä, tutki tyrmää, ja taistele vihollisia vastaan. Voit yrittää paeta taistelusta tekemällä move-liikkeen.

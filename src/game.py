@@ -2,6 +2,7 @@
 #pylint: disable=no-member
 #Yllä oleva ajaa saman asian kuin whitelistaaminen, joka ei toiminut.
 import os
+import time
 import pygame
 from commands import Commands
 from rooms import Rooms
@@ -9,7 +10,7 @@ from items import Items
 from interface import Io
 from enemies import Enemies
 __location__ = os.path.realpath(
-    os.path.join(os.getcwd(), os.path.dirname(__file__)))
+    os.path.join(os.getcwd(), os.path.dirname(__file__),"resources"))
 class Loop:
     """Peli"""
 
@@ -37,8 +38,10 @@ class Loop:
                 i = i.split(";")
                 self.health = int(i[0])
                 make_tuple = i[1]
-                make_tuple = make_tuple[1:5]
-                self.position = (int(make_tuple[0]), int(make_tuple[3]))
+                make_tuple = make_tuple[1:-1]
+                make_tuple = make_tuple.replace(",", "")
+                make_tuple = make_tuple.split(" ")
+                self.position = (int(make_tuple[0]), int(make_tuple[1]))
                 make_list = i[2]
                 make_list = make_list[1:-1]
                 make_list = make_list.split(",")
@@ -54,6 +57,7 @@ class Loop:
             self.health = 10
         self.combat_chance = 0
         self.in_combat = 0
+        self.money = 100
     def delete_save(self):
         """Poista tallennus tiedosto.
         """
@@ -83,16 +87,29 @@ class Loop:
             IO.text.append(i)
         while True:
             if GAME.events() is False:
-                GAME.save()
+                if self.health > 0:
+                    GAME.save()
                 break
     def save(self):
-        """Tallenna pelaajan edistyminen save.csv tiedostoon.
+        """Tallenna pelaajan edistyminen save.csv ja room_save.csv tiedostoon.
         """
         items_list = []
         for i in self.player_items:
             items_list.append(i.name)
-        with open(os.path.join(__location__, 'save.csv'), "w", encoding="utf-8") as save_file:
+        with open(os.path.join(__location__,
+        'save.csv'), "w", encoding="utf-8") as save_file:
             save_file.write(f"{self.health};{self.position};{items_list}")
+        with open(os.path.join(__location__,
+        'room_save.csv'), "w", encoding="utf-8")as room_save_file:
+            room_save_file.write("Pysty kordinaatti,"+
+            "vaaka kordinaatti, nimi, description, lukittu-status, huoneen esine.\n")
+            for i in self.rooms:
+                try:
+                    (room_save_file.write(f"{i.horizontal};" +
+                    f"{i.vertical};{i.name};{i.description};{i.locked};{i.item.name}\n"))
+                except AttributeError:
+                    (room_save_file.write(f"{i.horizontal};"+
+                    f"{i.vertical};{i.name};{i.description};{i.locked};{i.item}\n"))
     def input_entry(self):
         """Lisää pelaajan kirjoittaman tekstin ja komennon palautteen IO-tekstikenttään.
             Sitten pyyhkii input_textin.
@@ -107,6 +124,11 @@ class Loop:
         Päivittää näyton IO.update_screenillä, mutta jos pelaaja poistuu peli-ikkunasta,
         siirry suoritus takaisin start() funktioon
         """
+        if self.health <= 0:
+            IO.text.append("You have been slain! Game over.")
+            IO.update_screen()
+            time.sleep(5)
+            return False
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return False

@@ -22,3 +22,7 @@ enemies.py on luotu. Logiikka on tuttu. Pelissä voi nyt joutua taisteluun. Peli
 vihollisen tai pakenee (move komento, 50% mahdollisuus). Teksti nyt näkyy oiken pygame-ikkunan sisällä. Esineet key ja potion toimivat nyt, ja kun esine noukitaan huoneesta,
 huoneessa ei ole enää esineitä. Io.py on myos luotu, joka vastaa tekstistä näytollä. Peli tallentuu nyt kun pelaaja poistuu pelistä. (Tallentaa vain pelaajan elämäpisteet ja sijainnin.
 Tällä hetkellä huoneiden esineet tulevat takaisin, kun pelaaja poistuu pelistä ja tulee takaisin.)
+
+## viikko 7
+Huoneet nyt tallennetaan, jotta esineet eivät tule takaisin, kun pelaaja poistuu pelistä. Resources kansio luotu csv tiedostoille.
+uusi komento buy antaa pelaajan ostaa esineitä. Lisää huoneita. Pelin voi nyt voittaa ja hävitä.

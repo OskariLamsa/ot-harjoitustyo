@@ -1,0 +1,13 @@
+Pysty kordinaatti,vaaka kordinaatti, nimi, description, lukittu-status, huoneen esine.
+0;0;Hospital;You are in a hospital. The walls are lined with empty beds and there are broken vials, bottles and needles scattered about;0;key
+1;0;Hallway;You are in a hallway. The stone bricks are withered and collecting moss.;0;potion
+2;0;Crossroads;You are at a T-shaped crossroad. It is too dark to see where each path leads;0;none
+2;-1;End of the hall;You are at the end of the hallway.;0;none
+2;1;Lidl;You are at the front door of a local Lidl grocery store;0;none
+2;-2;Bathroom;You are at a standard bathroom. Why does a bathroom have a lock anyway?;1;potion
+2;-3;Closet;You are in a stuffy closet. Don't breathe in too much dust.;0;key
+2;2;Cookie aisle;You are in the cookie aisle. Judging by the best-before dates, nothing here is edible anymore;0;none
+3;2;Security room;You are in the security room. Too bad these monitors don't have any power.;0;potion
+1;2;Merchant;This hooded merchant has wares for sale. Why not buy something?;0;none
+2;3;Storage;You are in a storage room with boxes filled with stuff used by the employees that used to work here.;1;none
+2;4;Outside;You are in the middle of a nice field filled with flowers. You have escaped the dungeon!;1;none

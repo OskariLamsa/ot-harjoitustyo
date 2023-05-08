@@ -20,7 +20,13 @@ Jos haluat resetoida pelin tallenustiedoston, kirjoita:
 ```bash
 poetry run invoke reset
 ```
+Jos haluat resetoida ja pelata, voit kirjoittaa:
+```bash
+poetry run invoke resetstart
+```
+
 ## Testit
+HUOM: resetoi ennen kuin suoritat testejä!
 Voit ajaa pylint testit komennolla:
 ```bash
 poetry run invoke pylint

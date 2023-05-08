@@ -1,4 +1,7 @@
 """Tämä luokka luo 'huoneet' joita pelissä käytetään."""
+import os
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__)))
 class Rooms:
     """Luokka huoneille"""
     def __init__(self, horizontal, vertical, name, description, locked, item):
@@ -10,16 +13,23 @@ class Rooms:
         self.locked = int(locked)
         self.item = item
     def room_decoder(self,file,items):
-        """Palauta lista huone-olioita. Jättää ekan linen huomiotta,
-        sillä se sisältää kuvauksen.
+        """Yritä käyttää tallenustiedostoa, jos sellainen on. 
+        Muussa tapauksessa käytä rooms.csv
 
         Args:
-            file (csv): rooms.csv
-            items (list): self.items[]
+            file (csv): tiedosto
+            items (item): item-lista
 
         Returns:
-            list: rooms[]
+            list: rooms-lista
         """
+        try:
+            with open(os.path.join(__location__, 'room_save.csv'), encoding="utf-8") as save_file:
+                return Rooms.compiler(self, save_file, items)
+        except FileNotFoundError:
+            return Rooms.compiler(self, file, items)
+
+    def compiler(self,file,items):
         roomlist = []
         first = 1
         for j in file:

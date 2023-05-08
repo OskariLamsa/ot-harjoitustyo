@@ -6,6 +6,7 @@ from game import Loop
 from rooms import Rooms
 from items import Items
 from interface import Io
+import random
 import pygame
 __location__ = os.path.realpath(
     os.path.join(os.getcwd(), os.path.dirname(__file__)))
@@ -39,6 +40,9 @@ class TestCommands(unittest.TestCase):
         """
     def test_IO(self):
         pygame.init()
+        Handler = Commands(self.GAME)
+        print(self.GAME.items[0])
+        print(self.GAME.rooms[0])
         IO = Io(self.GAME)
         IO.update_screen()
     def test_command_handler_move_south(self):
@@ -101,6 +105,26 @@ class TestCommands(unittest.TestCase):
         Commands.command_handler(self.GAME, "search")
         self.assertEqual(Commands.command_handler(self.GAME, "use key"),
                          "Nothing to unlock here.")
+    def test_use_key_west(self):
+        Commands.command_handler(self.GAME, "search")
+        self.GAME.position = (2,-1)
+        self.assertEqual(Commands.command_handler(self.GAME, "use key"),
+                         "You used the key to unlock the Bathroom")
+    def test_use_key_east(self):
+        Commands.command_handler(self.GAME, "search")
+        self.GAME.position = (2,-3)
+        self.assertEqual(Commands.command_handler(self.GAME, "use key"),
+                         "You used the key to unlock the Bathroom")
+    def test_use_key_north(self):
+        Commands.command_handler(self.GAME, "search")
+        self.GAME.position = (3,-2)
+        self.assertEqual(Commands.command_handler(self.GAME, "use key"),
+                         "You used the key to unlock the Bathroom")
+    def test_use_key_south(self):
+        Commands.command_handler(self.GAME, "search")
+        self.GAME.position = (1,-2)
+        self.assertEqual(Commands.command_handler(self.GAME, "use key"),
+                         "You used the key to unlock the Bathroom")
     def test_command_handler_move_east(self):
         self.GAME.position = (0,0)
         self.assertEqual(Commands.command_handler(self.GAME, "move east"),
@@ -109,3 +133,77 @@ class TestCommands(unittest.TestCase):
     def test_command_handler_move_north(self):
         self.assertEqual(Commands.command_handler(self.GAME, "move north"),
                          "There is nothing there.")
+    def test_move_to_locked(self):
+        self.GAME.position = (2,-1)
+        self.assertEqual(Commands.command_handler(self.GAME, "move west"),
+                         "That room is locked!")
+    def test_attack_nothing(self):
+        self.assertEqual(Commands.command_handler(self.GAME, "attack"),
+                         "There are no enemies to attack.")
+    def test_attack(self):
+        "Lyo ja osu."
+        random.seed(10)
+        Commands.combat_start(self.GAME)
+        self.assertEqual(Commands.command_handler(self.GAME, "attack"),
+                         "You hit the goblin\nThe goblin hits you for 2 damage!")
+    def test_attack_miss(self):
+        "lyo ja huido ohi."
+        random.seed(11)
+        Commands.combat_start(self.GAME)
+        self.assertEqual(Commands.command_handler(self.GAME, "attack"),
+                         "You miss.\nThe ghost attacks you, but misses!")
+    def test_invalid_two_part_input(self):
+        "Varoita pelaajaa järjettomästä inputista."
+        self.assertEqual(Commands.command_handler(self.GAME, "kaksi sanaa"),
+                         "Check your commands, sir.")
+    def test_potion(self):
+        "Yritä käyttää potion-esinettä."
+        self.GAME.position = (1,0)
+        Commands.command_handler(self.GAME, "search")
+        self.assertEqual(Commands.command_handler(self.GAME, "use potion"),
+                         "You have healed for 4 health!")
+    def test_no_escape(self):
+        "Yritä paeta tappelusta. epäonnistu."
+        random.seed(11)
+        Commands.combat_start(self.GAME)
+        self.GAME.in_combat = 1
+        self.assertEqual(Commands.command_handler(self.GAME, "move south"),
+                         "But you couldn't get away!\nThe ghost attacks you, but misses!")
+    def test_escape(self):
+        "Yritä paeta tappelusta. Onnistuu."
+        random.seed(7)
+        Commands.combat_start(self.GAME)
+        self.GAME.in_combat = 1
+        self.assertEqual(Commands.command_handler(self.GAME, "move south"),
+                         "You managed to flee!\nYou are in a hallway. The stone bricks are withered and collecting moss.\nYou can move: north (Hospital), south (Crossroads)")
+    def test_invalid_enemy_attack(self):
+        "Väärän niminen vihollinen hyokkää. Mitään ei tapahdu."
+        Commands.combat_start(self.GAME)
+        self.assertEqual(Commands.enemy_attack(self.GAME, "Petteri"),
+                         None)
+    def test_defeat_the_enemies(self):
+        "Päihitä vihollinen."
+        random.seed(10)
+        Commands.combat_start(self.GAME)
+        Commands.command_handler(self.GAME, "attack")
+        Commands.command_handler(self.GAME, "attack")
+        Commands.command_handler(self.GAME, "attack")
+        self.assertEqual(Commands.command_handler(self.GAME, "attack"),
+                         "You hit and defeat the goblin and find 46 money!")
+    def test_ambush(self):
+        "Vihollinen hyokkää."
+        self.GAME.combat_chance = 100
+        random.seed(10)
+        self.assertEqual(Commands.command_handler(self.GAME, "move south"),
+            "You are in a hallway. The stone bricks are withered and collecting moss.\nYou have been ambushed by a goblin!")
+    def test_save(self):
+        "Tallenna peli"
+        self.assertEqual(self.GAME.save(),
+                         None)
+   # def test_events(self):
+    #    "Testaa events"
+     #   pygame.init()
+      #  IO = Io(self.GAME)
+       # IO.update_screen()
+        #self.assertEqual(self.GAME.events(),
+         #                None)
